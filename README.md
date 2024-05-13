@@ -11,6 +11,10 @@ Dumb Dirt es una página web enfocada en la venta y distribución de diversos ti
 ```text
 git clone https://github.com/iDistopy/Dumb-Dirt.git
 ```
+- Ingresar al Proyecto
+```text
+cd Dumb-Dirt
+```
 - Instalar Dependencias
 ```text
 npm -i install
