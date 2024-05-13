@@ -1,0 +1,186 @@
+<!-- inicio.html-->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Metadatos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/09e371ab29.js" crossorigin="anonymous"></script>
+  <script src="../js/server.mjs"></script>
+  <script src="../js/main.js"></script>
+
+  <!-- Título -->
+  <title>Inicio • Dumb Dirt</title>
+</head>
+
+<body id="body">
+  <!-- Encabezado -->
+  <header>
+    <div class="offSign">
+        <div class="textContainer" style="padding-top: 5px;">
+            <span><strong>30%</strong> de descuento en toda la sección <strong>Pet Friendly</strong></span>
+        </div>
+    </div>
+    <!-- Primera mitad del Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggler">
+            <a class="navbar-brand" href="inicio.html">
+                <span class="textLogo"><strong>Dumb&nbsp;&nbsp;&nbsp;&nbsp;Dirt</strong></span>
+            </a>
+            <form class="d-flex">    
+                <!-- Localizar sucursales --> 
+                <button type="button" class="btn" onclick="window.location.href='#';">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="titleText">Sucursales<br>
+                        <span class="subText">Localizarlas</span>
+                    </span>
+                </button>
+
+                <!-- Búsqueda de productos -->
+                <button type="button" class="navButton btn" onclick="searchModal()">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span class="titleText">Encontrar Productos<br>
+                        <span class="subText">Búsqueda Rápida</span>
+                    </span>
+                </button>                
+
+                <!-- Iniciar sesión -->
+                <button type="button" class="navButton btn" onclick="sendAlert()">
+                    <span class="titleText">Iniciar Sesión<br>
+                        <span class="subText">Tu Cuenta</span>
+                    </span>
+                </button>
+            </form>
+            <button class="navButton shopButton btn">
+                <i class="fa-solid fa-basket-shopping"></i> 
+                <span>(8)</span>
+            </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="navbar-collapse" id="navbarToggler" style="background-color: #f8f9fa !important; padding: 1px; padding-bottom: 15px;">
+        <div class="linea"></div>
+        <ul class="catContainer nav justify-content-center">
+          <button type="button" class="catButton btn" onclick="">
+            <span class="catText">Ofertas<br>
+            </span>
+          </button>
+  
+          <button type="button" class="catButton btn" onclick="">
+            <span class="catText">Planta<br>
+            </span>
+          </button>
+  
+          <button type="button" class="catButton btn" onclick="">
+            <span class="catText">Maceteros<br>
+            </span>
+          </button>
+
+          <button type="button" class="catButton btn" onclick="">
+            <span class="catText">Hogar & Decoración<br>
+            </span>
+          </button>
+  
+          <button type="button" class="catButton btn" onclick="">
+            <span class="catText">Flores & Boutiques<br>
+            </span>
+          </button>
+  
+          <button type="button" class="catButton btn" onclick="">
+            <span class="catText">Ideas de Regalo<br>
+            </span>
+          </button>
+  
+          <button type="button" class="catButton btn" onclick="">
+            <span class="catText">Talleres<br>
+            </span>
+          </button>
+        </ul>
+</header>
+
+<!-- Informción Plantas Largas -->
+<div class="infoContainer">
+  <div class="infoText">
+    <h6 class="infoTitle">
+      ¿Quieres sacarle el máximo provecho a tu compra?<br>
+    </h6>
+    <span class="infoDesc">
+      Las plantas grandes transforman un espacio, requieren
+      un riego menos frecuente y se adaptan mejor a su nuevo hogar
+    </span>
+  </div>
+  <button class="infoButton btn">Comprar Plantas Grandes <i class="fa-solid fa-arrow-up-right-from-square" style="font-family: 5px; padding-left: 5px;"></i></button>
+</div>
+
+<!-- Contenido Principal -->
+<div class="mainContainer">
+  <div class="mainTextContainer">
+    <!-- Main Text -->
+    <h1>Plantas de Fácil Cuidado</h1>
+    <p>Explora nuestra amplia selección de plantas, maceteros y productos para el hogar y la decoración.</p>
+
+    <!-- Filtros -->
+    <button class="resetFilter btn">Esconder Filtros <i class="fa-solid fa-filter" style="padding-left: 5px;"></i></button>
+    <button class="resetFilter btn">Filtrar Por: </i>${}</button>
+
+    <hr class="lineaDiv">
+
+    <!-- Productos -->
+    <!-- Contenedor para mostrar la planta aleatoria -->
+    <div id="planta-aleatoria" class="card" style="display: none;">
+      <img id="planta-imagen" class="card-img-top" alt="">
+      <div class="card-body">
+        <h5 id="planta-nombre" class="card-title"></h5>
+        <button id="btn-agregar-carrito" class="btn btn-primary">Añadir al Carrito</button>
+        <button id="btn-ver-caracteristicas" class="btn btn-secondary">Ver Características</button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+  <!-- Buscador -->
+  <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <h1
+          style="font-size: 25px; padding-left: 25px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+          <strong style="color: #fff;">Buscador</strong>
+        </h1>
+        <div class="container">
+          <div class="search-container">
+            <input class="input" type="text">
+            <svg viewBox="0 0 24 24" class="search__icon">
+              <g>
+                <path
+                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                </path>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
