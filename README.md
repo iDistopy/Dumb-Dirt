@@ -22,7 +22,7 @@ node --experimental-modules .\public\js\server.mjs
 Listo! Servidor iniciado en http://127.0.0.1:3000/home/inicio
 
 ## Importante
-De querer modificar el puerto de inicio, se deberá ingresar a `./public/js/server.mjs` y modificar la variable PUERTO por la de preferencia.
+De querer modificar el puerto de inicio, se deberá ingresar a `./public/js/server.mjs` y modificar la variable **PUERTO** por la de preferencia.
 
 ## Autores
 - Esteban Guerra
