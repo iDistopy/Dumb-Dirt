@@ -40,12 +40,12 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggler">
-            <a class="navbar-brand" href="inicio.html">
+            <a class="navbar-brand" href="/inicio">
                 <span class="textLogo"><strong>Dumb&nbsp;&nbsp;&nbsp;&nbsp;Dirt</strong></span>
             </a>
             <form class="d-flex">    
                 <!-- Localizar sucursales --> 
-                <button type="button" class="btn" onclick="window.location.href='#';">
+                <button type="button" class="btn" onclick="window.location.href='/sucursales';">
                     <i class="fa-solid fa-location-dot"></i>
                     <span class="titleText">Sucursales<br>
                         <span class="subText">Localizarlas</span>
@@ -61,7 +61,7 @@
                 </button>                
 
                 <!-- Iniciar sesión -->
-                <button type="button" class="navButton btn" onclick="sendAlert()">
+                <button type="button" class="navButton btn" onclick="window.location.href='/login'">
                     <span class="titleText">Iniciar Sesión<br>
                         <span class="subText">Tu Cuenta</span>
                     </span>
@@ -143,7 +143,7 @@
     <hr class="lineaDiv">
 
     <!-- Menú de Productos -->
-    
+
     <!-- Contenedor para mostrar la planta aleatoria -->
     <div id="planta-aleatoria" class="card" style="display: none;">
       <img id="planta-imagen" class="card-img-top" alt="">
@@ -156,6 +156,7 @@
     </div>
   </div>
 </div>
+
   <!-- Buscador -->
   <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -179,9 +180,6 @@
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
 </body>
 
 </html>

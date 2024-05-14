@@ -1,3 +1,11 @@
+// Auto-Favicon
+var link = document.createElement('link');
+var head = document.querySelector('head');
+
+link.type = 'image/x-icon';
+link.rel = 'shortcut icon';
+link.href = '../utils/images/dumb-dirt.png';
+head.appendChild(link);
 
 // Modal de búsqueda de productos
 function searchModal() {

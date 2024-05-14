@@ -125,19 +125,19 @@ button.shopButton:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  backdrop-filter: blur(5px); /* Aplica el desenfoque al fondo */
+  backdrop-filter: blur(5px);
   z-index: 1050;
   display: none;
 }
 
 /* Estilo adicional para el contenedor del modal */
 #searchModalContainer {
-  background-color: transparent; /* Fondo transparente */
-  position: absolute; /* Posición absoluta para que esté por encima del desenfoque */
+  background-color: transparent; 
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1051; /* Asegura que el modal esté por encima del fondo */
+  z-index: 1051;
 }
 
 .searchModalContainer {
