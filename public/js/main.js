@@ -1,6 +1,4 @@
 // Lado del cliente
-
-// Mostrar plantas
 async function mostrarPlantas() {
         try {
                 const plantas = await obtenerPlantas();
@@ -10,16 +8,25 @@ async function mostrarPlantas() {
                 plantas.forEach((planta, index) => {
                         if (index < 8) {
                                 const plantaElement = document.createElement('div');
+                                plantaElement.classList.add('planta');
                                 plantaElement.innerHTML = generarPlantaHTML(planta);
                                 plantasContainer.appendChild(plantaElement);
                         }
                 });
+
+                // if (plantas.length > 8) {
+                //         const loadMoreButton = document.getElementById('loadMoreButton');
+                //         loadMoreButton.addEventListener('click', () => {
+                //                 mostrarPlantas();
+
+                //         });
+                //         plantasContainer.appendChild(loadMoreButton);
+                // }
         } catch (error) {
                 console.error(error);
         }
 }
 
-// Actualizar plantas
 async function actualizarPlantas(searchValue) {
         const plantasContainer = document.getElementById('plantasContainer');
         const plantasActuales = plantasContainer.querySelectorAll('.planta');
@@ -39,18 +46,18 @@ async function actualizarPlantas(searchValue) {
                 plantaElement.classList.add('planta');
                 plantaElement.dataset.id = planta.id.toString();
                 plantaElement.innerHTML = generarPlantaHTML(planta);
-
+            
                 // Si no tiene datos, agregar la clase 'no-data' y no agregar al contenedor
                 if (planta.common_name === null) {
-                        plantaElement.querySelector('.planta-name').classList.add('no-data');
+                    plantaElement.querySelector('.planta-name').classList.add('no-data');
                 } else if (planta.scientific_name === null) {
-                        plantaElement.querySelector('.planta-scientific').classList.add('no-data');
+                    plantaElement.querySelector('.planta-scientific').classList.add('no-data');
                 } else if (planta.image_url === null) {
-                        plantaElement.querySelector('.planta-image').classList.add('no-data');
+                    plantaElement.querySelector('.planta-image').classList.add('no-data');
                 } else {
-                        plantasContainer.appendChild(plantaElement);
+                    plantasContainer.appendChild(plantaElement);
                 }
-        });
+            });
 }
 
 // Llamado a la API - Obtiene las plantas
@@ -62,7 +69,7 @@ async function obtenerPlantas() {
         return data;
 }
 
-// Llamado a la API - Busca las plantas
+// Llamado a la API - Busca plantas
 async function buscarPlantas(searchValue) {
         const response = await fetch(`/api/search?inputString=${searchValue}`);
         const data = await response.json();
