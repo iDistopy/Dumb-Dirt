@@ -19,14 +19,11 @@ app.use('/js', express.static(path.join(__dirname, '..', 'js')));
 app.use('/utils', express.static(path.join(__dirname, '..', 'utils')));
 app.use('/home', express.static(path.join(__dirname, '..', 'home')));
 
-console.log(path.join(__dirname, '..', 'css'))
-console.log('-------------------')
-console.log(path.join(__dirname, '..', 'js'))
-
 // Define la ruta base para la carpeta /home/
 app.get('/inicio', (req, res) => {
   res.type('text/html');
   res.sendFile(path.resolve(__dirname, '..', 'home', 'inicio.html'));
+  console.log(path.resolve(__dirname, '..', 'home', 'inicio.html'));
 });
 
 
