@@ -2,7 +2,6 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import cors from 'cors';
-import { log } from 'console';
 
 // Puerto a ejecutar el servidor
 const PORT = 3000;
