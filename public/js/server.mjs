@@ -1,15 +1,22 @@
+// Lado del servidor
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import cors from 'cors';
+import fetch from 'node-fetch';
 
-// Puerto a ejecutar el servidor
-const PORT = 3000;
+// Configuración
+const PUERTO = 433;
+const API_KEY = 'BGoua_i8_bqc9wL7JBLWEwSS_J3Pk59osoIgjRMTMPo';
+const app = express();
+
+// Inicia el servidor en el puerto especificado
+app.listen(PUERTO, () => {
+  console.log(`Servidor Express escuchando en el puerto ${PUERTO}`);
+});
 
 // Obtiene el directorio actual
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const app = express();
-
 app.use(cors());
 
 // Configura el directorio para archivos estáticos
@@ -19,23 +26,45 @@ app.use('/utils', express.static(path.join(__dirname, '..', 'utils')));
 app.use('/home', express.static(path.join(__dirname, '..', 'home')));
 
 // Define las rutas base para cada archivo HTML
+app.get('/', (req, res) => {
+  res.type('text/html');
+  res.sendFile(path.resolve(__dirname, '..', 'index.html'));
+});
 app.get('/inicio', (req, res) => {
   res.type('text/html');
   res.sendFile(path.resolve(__dirname, '..', 'home', 'inicio.html'));
 });
-
 app.get('/sucursales', (req, res) => {
   res.type('text/html');
   res.sendFile(path.resolve(__dirname, '..', 'home', 'branches.html'));
 });
-
 app.get('/login', (req, res) => {
   res.type('text/html');
   res.sendFile(path.resolve(__dirname, '..', 'home', 'secure', 'login.html'));
 });
 
+// Obtiene las plantas
+app.get('/api/plantas', async (req, res) => {
+  try {
+    const response = await fetch(`https://trefle.io/api/v1/plants?token=${API_KEY}`);
+    const data = await response.json();
+    res.json(data.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Hubo un error al obtener las plantas' });
+  }
+});
 
-// Inicia el servidor en el puerto especificado
-app.listen(PORT, () => {
-  console.log(`Servidor Express escuchando en el puerto ${PORT}`);
+// Busca plantas
+app.get('/api/search', async (req, res) => {
+  try {
+    const INPUT_STRING = req.query.inputString || "";
+    const response = await fetch(`https://trefle.io/api/v1/plants/search?token=${API_KEY}&q=${INPUT_STRING}`);
+    const data = await response.json();
+    res.json(data.data);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Hubo un error al realizar la búsqueda' });
+  }
 });
