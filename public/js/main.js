@@ -46,18 +46,18 @@ async function actualizarPlantas(searchValue) {
                 plantaElement.classList.add('planta');
                 plantaElement.dataset.id = planta.id.toString();
                 plantaElement.innerHTML = generarPlantaHTML(planta);
-            
+
                 // Si no tiene datos, agregar la clase 'no-data' y no agregar al contenedor
                 if (planta.common_name === null) {
-                    plantaElement.querySelector('.planta-name').classList.add('no-data');
+                        plantaElement.querySelector('.planta-name').classList.add('no-data');
                 } else if (planta.scientific_name === null) {
-                    plantaElement.querySelector('.planta-scientific').classList.add('no-data');
+                        plantaElement.querySelector('.planta-scientific').classList.add('no-data');
                 } else if (planta.image_url === null) {
-                    plantaElement.querySelector('.planta-image').classList.add('no-data');
+                        plantaElement.querySelector('.planta-image').classList.add('no-data');
                 } else {
-                    plantasContainer.appendChild(plantaElement);
+                        plantasContainer.appendChild(plantaElement);
                 }
-            });
+        });
 }
 
 // Llamado a la API - Obtiene las plantas
@@ -109,15 +109,6 @@ function generarPlantaHTML(planta) {
 
 // Verificar que el documento está cargado
 document.addEventListener("DOMContentLoaded", function () {
-        // Mostrar plantas al cargar la página
-        mostrarPlantas();
-
-        // Escuchar el clic en el botón de búsqueda
-        document.getElementById('searchButton').addEventListener('click', async () => {
-                const searchInput = document.getElementById('searchInput');
-                await actualizarPlantas(searchInput.value.toLowerCase());
-        });
-
         // Auto-Favicon
         var link = document.createElement('link');
         var head = document.querySelector('head');
@@ -127,11 +118,15 @@ document.addEventListener("DOMContentLoaded", function () {
         link.href = '../utils/images/dumb-dirt.svg';
         head.appendChild(link);
 
-        // Login y Registro
         const signUpButton = document.getElementById('signUp');
         const signInButton = document.getElementById('signIn');
         const container = document.getElementById('container');
         const pathName = window.location.pathname;
+
+        // Mostrar plantas al cargar la página
+        if (pathName === '/inicio') {
+                mostrarPlantas();
+        }
 
         // Verificar si estamos en la página de login
         if (pathName === '/login') {
@@ -147,4 +142,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.title = "Iniciar Sesión • Dumb Dirt";
                 });
         }
+
+        // Escuchar el clic en el botón de búsqueda
+        document.getElementById('searchButton').addEventListener('click', async () => {
+                const searchInput = document.getElementById('searchInput');
+                await actualizarPlantas(searchInput.value.toLowerCase());
+        });
 });
