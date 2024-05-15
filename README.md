@@ -30,7 +30,7 @@ Listo! Servidor iniciado en http://127.0.0.1:433/
 - Para mantener el servidor iniciado siempre y escuchando cambios dentro del proyecto, deberás utilizar **nodemon**
 - Instalar Nodemon
 ```text
-nodemon --experimental-modules .\public\js\server.mjs
+npm install -g nodemon
 ```
 Inciar Servidor
 ```text
