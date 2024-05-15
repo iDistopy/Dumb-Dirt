@@ -96,7 +96,7 @@ function testAlert() {
 function generarPlantaHTML(planta) {
         return `
             <div class="planta-container">
-                <img src="${planta.image_url}" alt="${planta.common_name}" class="planta-image">
+                <img id="planta-image" src="${planta.image_url}" alt="${planta.common_name}" class="planta-image">
                 <div class="planta-info">
                     <h5 id="planta-nombre" class="planta-name card-title">${planta.common_name}</h5>
                     <p class="planta-scientific">${planta.scientific_name}</p>
@@ -106,6 +106,25 @@ function generarPlantaHTML(planta) {
             </div>
         `;
 }
+// Al cargar la página
+window.addEventListener("load", (event) => {
+        let logo = document.getElementById('pageLogo');
+
+        function logoAnimation() {
+                console.log("hola");
+                logo.style.transition = "all 0.3s";
+                logo.style.transform = "scale(1.1)";
+                setTimeout(() => {
+                        logo.style.transition = "all 0.3s";
+                        logo.style.transform = "scale(1.0)";
+                }, 500);
+        }
+    
+        let intevarlo = setInterval(logoAnimation, 1000);
+        setTimeout(() => {
+            clearInterval(intevarlo);
+        }, 9000);
+    });
 
 // Verificar que el documento está cargado
 document.addEventListener("DOMContentLoaded", function () {
