@@ -24,10 +24,9 @@ npm -i install
 ```text
 node --experimental-modules .\public\js\server.mjs
 ```
-Listo! Servidor iniciado en http://127.0.0.1:3000/home/inicio
+Listo! Servidor iniciado en http://127.0.0.1:433/
 
 ## Importante
-- De querer modificar el puerto de inicio, se deberá ingresar a `./public/js/server.mjs` y modificar la variable **PUERTO** por la de preferencia.
 - Si quieres mantener el servidor iniciado siempre, escuchando cambios dentro del proyecto, deberás utilizar **nodemon**
 ```text
 nodemon --experimental-modules .\public\js\server.mjs
