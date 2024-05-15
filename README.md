@@ -27,7 +27,7 @@ node --experimental-modules .\public\js\server.mjs
 Listo! Servidor iniciado en http://127.0.0.1:433/
 
 ## Importante
-- Si quieres mantener el servidor iniciado siempre, escuchando cambios dentro del proyecto, deberás utilizar **nodemon**
+- Para mantener el servidor iniciado siempre y escuchando cambios dentro del proyecto, deberás utilizar **nodemon**
 ```text
 nodemon --experimental-modules .\public\js\server.mjs
 ```
