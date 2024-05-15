@@ -40,10 +40,16 @@ nav .navbar-brand {
 .textLogo {
   font-size: 32px;
   font-family: "GrandCru-LightS", serif;
-  padding-left: 30px;
+  padding-left: 5px;
   text-decoration: underline;
   text-decoration-thickness: 1.3px;
   text-underline-offset: 5px;
+}
+
+#pageLogo {
+  margin-left: 30px;
+  width: 65px;
+  height: 65px;
 }
 
 .form {
