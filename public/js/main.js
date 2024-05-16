@@ -83,6 +83,8 @@ async function buscarPlantas(searchValue) {
 // Modal de búsqueda de productos
 function searchModal() {
         var myModal = new bootstrap.Modal(document.getElementById('searchModal'));
+        let searchButton = document.getElementById('searchButton');
+        
         myModal.show();
         console.log("Modal Abierto");
 }
@@ -106,12 +108,12 @@ function generarPlantaHTML(planta) {
         // <button id="btn-agregar-carrito" class="btn btn-primary">Añadir al Carrito</button>
         // <button id="seeDetails" class="btn">Ver Características</button>
 }
+
 // Al cargar la página
 window.addEventListener("load", (event) => {
         let logo = document.getElementById('pageLogo');
 
         function logoAnimation() {
-                console.log("hola");
                 logo.style.transition = "all 0.3s";
                 logo.style.transform = "scale(1.1)";
                 setTimeout(() => {
@@ -124,7 +126,7 @@ window.addEventListener("load", (event) => {
         setTimeout(() => {
             clearInterval(intevarlo);
         }, 9000);
-    });
+});
 
 // Verificar que el documento está cargado
 document.addEventListener("DOMContentLoaded", function () {
