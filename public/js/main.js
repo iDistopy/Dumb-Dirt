@@ -100,11 +100,11 @@ function generarPlantaHTML(planta) {
                 <div class="planta-info">
                     <h5 id="planta-nombre" class="planta-name card-title">${planta.common_name}</h5>
                     <p class="planta-scientific">${planta.scientific_name}</p>
-                    <button id="btn-agregar-carrito" class="btn btn-primary">Añadir al Carrito</button>
-                    <button id="seeDetails" class="btn">Ver Características</button>
                 </div>
             </div>
         `;
+        // <button id="btn-agregar-carrito" class="btn btn-primary">Añadir al Carrito</button>
+        // <button id="seeDetails" class="btn">Ver Características</button>
 }
 // Al cargar la página
 window.addEventListener("load", (event) => {

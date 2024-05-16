@@ -35,16 +35,13 @@
     <!-- Primera mitad del Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="true" aria-label="Toggle navigation">
+          <button id="navbarButton" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggler">
-            <div class="cuad" id="textLogo">
-
-            </div>
             <a class="navbar-brand" href="/inicio" >
                 <img id="pageLogo" src="../utils/images/dumb-dirt.svg" alt="Logo">
-                <span class="textLogo"><strong>Dumb&nbsp;&nbsp;&nbsp;&nbsp;Dirt</strong></span>
+                <span id="textLogo" class="textLogo"><strong>Dumb&nbsp;&nbsp;&nbsp;&nbsp;Dirt</strong></span>
             </a>
             <form class="d-flex">    
                 <!-- Localizar sucursales --> 
@@ -163,7 +160,7 @@
 
           <!-- Menú de Productos -->
           <div id="plantasContainer" class="row row-cols-1 row-cols-md-4 g-4 mb-4">
-            <!-- Aquí irán las cartas de venta -->
+            <!-- Aquí se suben las cartas mediante la API -->
           </div>
         
       </div>

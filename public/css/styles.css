@@ -248,6 +248,15 @@ button.shopButton:hover {
 
 }
 
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#navbarButton {
+  border: none !important;
+}
+
 button.catButton {
   border-color: transparent;
 }
@@ -369,24 +378,42 @@ button.catButton span {
   justify-content: center;
 }
 
+
 .planta {
-  width: 200px;
-  display: inline-block;
-  margin: 10px;
+  width: 30%;
+  margin: 5px;
   padding: 0px;
   text-align: center;
+  display: inline-block;
+  gap: 1rem;
+  grid-auto-rows: 22rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 }
 
 .planta-container {
   position: relative;
-  width: 100%;
-  height: 500px;
+  width: 90%;
+  height: 480px;
   overflow: hidden;
+  margin: 20px;
+}
+
+.planta-name {
+  display: block;
+  text-align: left;
+  margin-top: 15px;
+}
+
+.planta-scientific {
+  display: block;
+  text-align: left;
+  margin-top: 5px;
 }
 
 .planta-container img {
   width: 100%;
-  height: 60%;
+  height: 70%;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Responsive */
@@ -395,19 +422,42 @@ button.catButton span {
     text-align: center;
   }
 
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+  #pageLogo {
+      max-width: 12%;
+      height: auto;
+  }
+
+  #navbarToggler {
+    margin-top: 10px;
+  }
+
+  .textLogo {
+      text-align: center;
+  }
+
   .textContainer {
     font-size: 15px;
   }
 
   .navbar-brand span {
-    padding-left: 20%;
-    margin-bottom: -125px;
+    padding-left: 0%;
+    padding-top: 100%;
   }
 
   .linea {
     width: 100%;
     margin-top: 0%; 
     padding-bottom: -30%;
+  }
+
+  .navbar-collapse {
+    margin-bottom: -20px;
   }
 
   nav .navbar-collapse form button span {
