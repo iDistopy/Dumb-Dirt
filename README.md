@@ -1,5 +1,5 @@
 <h1><img src="https://i.imgur.com/HHrWPSf.png" alt="Dumb Dirt Logo" width="35"> Dumb Dirt</h1>
-Dumb Dirt es una página web enfocada en la venta y distribución de diversos tipos de plantas y árboles pequeños. Nuestro objetivo es acercar la naturaleza a los hogares y espacios de nuestros clientes, ofreciendo una amplia variedad de especies y brindando información y consejos para su cuidado
+Dumb Dirt es un sistema de proyecto enfocado en la venta y distribución de diversos tipos de plantas, árboles pequeños y demás seres vivos destinados al cuidado humano. Nuestro objetivo es acercar la naturaleza a los hogares y espacios de nuestros clientes, ofreciendo una amplia variedad de especies y brindando información y consejos para su cuidado
 
 ## Requisitos
 - [node.js](https://nodejs.org/en/download)
