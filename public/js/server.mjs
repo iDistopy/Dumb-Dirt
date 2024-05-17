@@ -6,7 +6,7 @@ import cors from 'cors';
 import fetch from 'node-fetch';
 
 // Configuración
-const PUERTO = 433;
+const PUERTO = 80;
 const API_KEY = 'BGoua_i8_bqc9wL7JBLWEwSS_J3Pk59osoIgjRMTMPo';
 const app = express();
 
@@ -58,13 +58,26 @@ app.get('/api/plantas', async (req, res) => {
 // Busca plantas
 app.get('/api/search', async (req, res) => {
   try {
-    const INPUT_STRING = req.query.inputString || "";
-    const response = await fetch(`https://trefle.io/api/v1/plants/search?token=${API_KEY}&q=${INPUT_STRING}`);
+    const { inputString } = req.query;
+    const response = await fetch(`https://trefle.io/api/v1/plants/search?token=${API_KEY}&q=${inputString}`);
     const data = await response.json();
     res.json(data.data);
 
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Hubo un error al realizar la búsqueda' });
+  }
+});
+
+// Obtiene una planta específica (usualmente para mostrar detalles)
+app.get('/api/plantas/id/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const response = await fetch(`https://trefle.io/api/v1/plants/${id}?token=${API_KEY}`);
+    const data = await response.json();
+    res.json(data.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Hubo un error al obtener la planta' });
   }
 });
