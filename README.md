@@ -2,7 +2,7 @@
 Dumb Dirt es un sistema de proyecto enfocado en la venta y distribución de diversos tipos de plantas, árboles pequeños y demás seres vivos destinados al cuidado humano. Nuestro objetivo es acercar la naturaleza a los hogares y espacios de nuestros clientes, ofreciendo una amplia variedad de especies y brindando información y consejos para su cuidado
 
 ## Requisitos
-- [node.js](https://nodejs.org/en/download)
+- [node.js](https://nodejs.org/en/download/prebuilt-installer)
 - [npm](https://nodejs.org/en/download)
 - [git](https://git-scm.com/download/win)
 - nodemon _(opcional)_
