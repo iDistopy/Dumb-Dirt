@@ -251,3 +251,42 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+
+@media screen and (max-width: 375px) {
+    .container {
+        width: 95%;
+        border-radius: 15px;
+		height: 50%;
+		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+		0 10px 10px rgba(0,0,0,0.22);
+    }
+
+    .form-container,
+    .sign-up-container,
+    .overlay-container {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .form-container,
+    .sign-up-container {
+        left: initial;
+    }
+
+    .container.right-panel-active .overlay-container,
+    .container.right-panel-active .sign-up-container {
+        transform: none;
+    }
+
+    .overlay {
+        width: 100%;
+        height: auto;
+        background-size: auto;
+    }
+
+    .overlay-panel {
+        width: 100%;
+        padding: 0 20px;
+    }
+}
