@@ -1,14 +1,14 @@
 {
   "particles": {
     "number": {
-      "value": 35,
+      "value": 35, // Cantidad de partículas por aparecer
       "density": {
-        "enable": true,
+        "enable": true, // Si tendrán o no densidad
         "value_area": 620
       }
     },
     "color": {
-      "value": "#D1F4DB"
+      "value": "#D1F4DB" // Color RGB
     },
     "shape": {
       "type": "circle",
@@ -26,7 +26,7 @@
       }
     },
     "opacity": {
-      "value": 0.5,
+      "value": 0.5, // Valor en decimales de la opacidad de las partículas
       "random": false,
       "anim": {
         "enable": false,
@@ -36,13 +36,13 @@
       }
     },
     "size": {
-      "value": 3,
-      "random": true,
+      "value": 3, // Tamaño de las partículas
+      "random": true, // Será aleatorio el tamaño?
       "anim": {
         "enable": false,
-        "speed": 35,
+        "speed": 35, // Velocidad de movimiento
         "size_min": 0.1,
-        "sync": false
+        "sync": false // Irán sincronizadas?
       }
     },
     "line_linked": {
@@ -53,10 +53,10 @@
       "width": 1
     },
     "move": {
-      "enable": true,
+      "enable": true, // Se moverán?
       "speed": 2,
-      "direction": "bottom-right",
-      "random": false,
+      "direction": "bottom-right", // Dirección de movimiento
+      "random": false, // Será aleatorio el movimiento?
       "straight": false,
       "out_mode": "out",
       "bounce": false,
@@ -72,13 +72,13 @@
     "events": {
       "onhover": {
         "enable": true,
-        "mode": "grab"
+        "mode": "grab" // Método de touch 
       },
       "onclick": {
-        "enable": true,
-        "mode": "push"
+        "enable": true, // Al tocar ocurrirá el evento?
+        "mode": "push" // Formato de toque
       },
-      "resize": true
+      "resize": true // Restructurar el tamaño al tocar?
     },
     "modes": {
       "grab": {
