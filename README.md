@@ -27,7 +27,7 @@ node --experimental-modules .\public\js\server.mjs
 Listo! Servidor iniciado en http://localhost/
 
 ## Importante
-Para auto-reiniciar el servidor debido a nuevos cambios realizados en el código, se puede podrá utilizar **nodemon**.
+Para auto-reiniciar el servidor debido a nuevos cambios realizados en el código, se puede utilizar **nodemon**.
 - Instalar Nodemon
 ```text
 npm install -g nodemon
