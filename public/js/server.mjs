@@ -5,14 +5,16 @@ import path from 'path';
 import cors from 'cors';
 import fetch from 'node-fetch';
 import fs from 'fs';
+import bodyParser from 'body-parser';
 
 // Configuración
-const PUERTO = 80;  
+const PUERTO = 80;
 const API_KEY = 'BGoua_i8_bqc9wL7JBLWEwSS_J3Pk59osoIgjRMTMPo';
 const app = express();
 
-
+// APP & MIDDLEWARE
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Obtiene el directorio actual
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -41,18 +43,12 @@ app.get('/login', (req, res) => {
   res.type('text/html');
   res.sendFile(path.resolve(__dirname, '..', 'home', 'secure', 'login.html'));
 });
-app.get('/inicio', (req, res) => {
-  const token = req.cookies.token;
-  if (!token) {
-    res.send(`Bienvenido, ${email}`);
-  }
-});
 
 // POST
 app.post('/sec/register', (req, res) => {
   const { name, email, password } = req.body;
   const user = { nombre: name, correo: email, contrasena: password };
-  
+
   // Leer los usuarios actuales
   const filePath = path.join(__dirname, '..', 'db', 'cuentas.json');
   fs.readFile(filePath, 'utf8', (err, data) => {
@@ -195,5 +191,5 @@ app.get('/api/plantas/id/:id', async (req, res) => {
 
 // Inicia el servidor en el puerto especificado
 app.listen(PUERTO, () => {
-  console.log(`Servidor Express escuchando en el puerto ${PUERTO}`);
+  console.log(`Servidor iniciado en el puerto ${PUERTO}. Operable en http://localhost`);
 });
