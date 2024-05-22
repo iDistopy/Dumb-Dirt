@@ -18,8 +18,6 @@
     <script src="../../js/particles.js"></script>
     <script src="../../js/main.js"></script>
 
-    <!-- Título -->
-    <title>Iniciar Sesión • Dumb Dirt</title>
 </head>
 <style>
     body { 
@@ -87,7 +85,7 @@
     <div id="particles-js"></div>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="#">
+            <form id="registerForm" method="POST" action="/sec/register">
                 <h1>Crear una Cuenta</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -95,14 +93,14 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>o usa tu email para registrarte</span>
-                <input type="text" placeholder="Nombre" />
-                <input type="email" placeholder="Correo electrónico" />
-                <input type="password" placeholder="Contraseña" />
-                <button>Registrarte</button>
+                <input id="nameRegister" type="text" name="name" placeholder="Nombre" required />
+                <input id="emailRegister" type="email" name="email" placeholder="Correo electrónico" required />
+                <input id="passwordRegister" type="password" name="password" placeholder="Contraseña" required />
+                <button id="registerButton" type="submit">Registrarte</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form id="loginForm" method="POST" action="/sec/login">
                 <h1>Iniciar Sesión</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -110,10 +108,10 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>o usa tu cuenta de email</span>
-                <input type="email" placeholder="Correo electrónico" />
-                <input type="password" placeholder="Contraseña" />
+                <input id="email" type="email" name="email" placeholder="Correo electrónico" required />
+                <input id="password" type="password" name="password" placeholder="Contraseña" required />
                 <a href="#">¿Olvidaste tu contraseña?</a>
-                <button>Iniciar Sesión</button>
+                <button id="loginButton" type="submit">Iniciar Sesión</button>
             </form>
         </div>
         <div class="overlay-container">
@@ -121,13 +119,13 @@
                 <div class="overlay-panel overlay-left">
                     <h1>Bienvenido de Vuelta!</h1>
                     <p>Para mantenerte conectado por favor inicia sesión en tu cuenta personal.</p>
-                    <button class="ghost" id="signIn">Iniciar Sesión</button>
+                    <button class="ghost" id="goSignIn">Iniciar Sesión</button>
                     <a href="/inicio" style="color: #d3f5df">Volver al Inicio</a>
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Hola, Planta Lover!</h1>
                     <p>Ingresa los detalles de tu información personal y emprende tu viaje con nosotros.</p>
-                    <button class="ghost" id="signUp">Registrarse</button>
+                    <button class="ghost" id="goSignUp">Registrarse</button>
                     <a href="/inicio" style="color: #ccfadd">Volver al Inicio</a>
                 </div>
             </div>

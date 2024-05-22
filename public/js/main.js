@@ -72,21 +72,32 @@ async function actualizarPlantas(params) {
 // Mostrar plantas aleatorias
 async function plantasRandom() {
         try {
-                const plantas = await obtenerPlantas();
-                const plantasContainer = document.getElementById('plantasContainer');
-                plantasContainer.innerHTML = '';
-
-                const plantasArray = (Math.random() > 0.5) ? plantas.slice(0, 20) : plantas.slice(0, 20);
-
-                // Rellenar de plantas aleatorias
-                plantasArray.forEach((planta) => {
-                        const plantaElement = document.createElement('div');
-                        plantaElement.classList.add('planta');
-                        plantaElement.innerHTML = generarPlantaHTML(planta);
-                        plantasContainer.appendChild(plantaElement);
-                });
+            const plantas = await obtenerPlantas();
+            const plantasContainer = document.getElementById('plantasContainer');
+            plantasContainer.innerHTML = '';
+    
+            const plantasArray = [];
+            const plantasDisponibles = plantas.slice(); // Copia el array para no modificar el original
+    
+            for (let i = 0; i < 20; i++) {
+                const randomIndex = Math.floor(Math.random() * plantasDisponibles.length);
+                const planta = plantasDisponibles[randomIndex];
+                plantasArray.push(planta);
+                plantasDisponibles.splice(randomIndex, 1); // Eliminar planta seleccionada para evitar duplicados
+                if (plantasDisponibles.length === 0) {
+                    plantasDisponibles.push(...plantas); // Si se quedan sin plantas, reiniciar el array
+                }
+            }
+    
+            // Rellenar de plantas aleatorias
+            plantasArray.forEach((planta) => {
+                const plantaElement = document.createElement('div');
+                plantaElement.classList.add('planta');
+                plantaElement.innerHTML = generarPlantaHTML(planta);
+                plantasContainer.appendChild(plantaElement);
+            });
         } catch (error) {
-                console.error(error);
+            console.error(error);
         }
 }
 
@@ -105,7 +116,7 @@ async function buscarPlantas(params = {}) {
         const response = await fetch(`/api/search?${query}`);
         const data = await response.json();
         console.log(data);
-    
+
         return data;
 }
 
@@ -115,7 +126,7 @@ async function mostrarPlantaId(id) {
         const data = await response.json();
         console.log(response);
         console.log(data);
-        
+
         return data;
 }
 
@@ -124,24 +135,8 @@ function searchModal() {
         var myModal = new bootstrap.Modal(document.getElementById('searchModal'));
         myModal.show();
         document.querySelector('.modal-backdrop').remove();
-        
-        console.log("Modal Abierto");
-}
 
-function modalPlanta(planta) {
-        const modalContent = generarModalHTML(planta);
-      
-        // Crea un div para el modal y agrega el contenido
-        const modalDiv = document.createElement('div');
-        modalDiv.classList.add('modal');
-        modalDiv.innerHTML = modalContent;
-      
-        // Agrega el modal al body
-        document.body.appendChild(modalDiv);
-      
-        // Muestra el modal
-        const myModal = new bootstrap.Modal(modalDiv);
-        myModal.show();
+        console.log("Modal Abierto");
 }
 
 // Solo para pruebas de integración
@@ -185,21 +180,25 @@ function generarModalHTML(planta) {
 
 // Al cargar la página
 window.addEventListener("load", (event) => {
-        let logo = document.getElementById('pageLogo');
-        
-        function logoAnimation() {
-                logo.style.transition = "all 0.3s";
-                logo.style.transform = "scale(1.1)";
-                setTimeout(() => {
+
+        const pathName = window.location.pathname;
+        if (pathName === "/inicio") {
+                let logo = document.getElementById('pageLogo');
+
+                function logoAnimation() {
                         logo.style.transition = "all 0.3s";
-                        logo.style.transform = "scale(1.0)";
-                }, 500);
+                        logo.style.transform = "scale(1.1)";
+                        setTimeout(() => {
+                                logo.style.transition = "all 0.3s";
+                                logo.style.transform = "scale(1.0)";
+                        }, 500);
+                }
+
+                let intevarlo = setInterval(logoAnimation, 1000);
+                setTimeout(() => {
+                        clearInterval(intevarlo);
+                }, 9000);
         }
-    
-        let intevarlo = setInterval(logoAnimation, 1000);
-        setTimeout(() => {
-            clearInterval(intevarlo);
-        }, 9000);
 });
 
 // Verificar que el documento está cargado
@@ -213,19 +212,70 @@ document.addEventListener("DOMContentLoaded", function () {
         link.href = '../utils/images/dumb-dirt.svg';
         head.appendChild(link);
 
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('container');
         const pathName = window.location.pathname;
+        const path = pathName.startsWith('/') ? pathName.substring(1) : pathName;
+        const formateado = path.charAt(0).toUpperCase() + path.slice(1);
+        document.title = formateado + " • Dumb Dirt";
+
+        // Al salir de la página
+        window.addEventListener('blur', function() {
+                if (!(pathName === "/login")) {
+                        document.title = 'Las plantas te extrañan :(';
+                }
+                
+        });
+
+        // Al volver a entrar se devuelve el valor del título
+        window.addEventListener('focus', function() {
+                if (!(pathName === "/login")) {
+                        document.title = formateado + " • Dumb Dirt";
+                }
+        });
+
+        const signUpButton = document.getElementById('goSignUp');
+        const signInButton = document.getElementById('goSignIn');
+        const container = document.getElementById('container');
 
         // Mostrar plantas al cargar la página
         if (pathName === '/inicio') {
                 plantasRandom();
+                const loginButton = document.getElementById('buttonLogin');
+                const accountDropdown = document.getElementById('accountDropdown');
+                loginButton.style.display = 'block';
+                accountDropdown.style.display = 'none';
+                // Obtener todos los contenedores de planta
+                document.getElementById('plantasContainer').addEventListener('click', async (event) => {
+                        const plantaContainer = event.target.closest('.planta-container');
+                        if (plantaContainer) {
+                                const plantaId = plantaContainer.dataset.id;
+                                console.log("ID de la planta seleccionada:", plantaId);
+                                
+                                // Mostrar la planta en un modal (rehacer por mala implementación)
+                                const planta = await mostrarPlantaId(plantaId);
+                                // modalPlanta(planta);
+                        }
+                });
+
+                // Por defecto el orden será "Nuevas Primero"
+                document.querySelector("#selectedOption").innerText = "Nuevas Primero";
+                document.querySelector(".dropdoown[data-value='nuevas']").classList.add("active");
+
+                // Alterna entre las opciones seleccionadas del dropdown
+                document.querySelectorAll(".dropdoown").forEach(function(item) {
+                        item.addEventListener("click", function() {
+                            let opcion = this.innerText;
+                            document.querySelector("#selectedOption").innerText = opcion;
+                            document.querySelectorAll(".dropdoown").forEach(function(item) {
+                                item.classList.remove("active");
+                            });
+                            this.classList.add("active");
+                        });
+                });
+
         }
 
         // Verificar si estamos en la página de login
         if (pathName === '/login') {
-
                 // Código para la página de login
                 signUpButton.addEventListener('click', () => {
                         container.classList.add("right-panel-active");
@@ -236,29 +286,61 @@ document.addEventListener("DOMContentLoaded", function () {
                         container.classList.remove("right-panel-active");
                         document.title = "Iniciar Sesión • Dumb Dirt";
                 });
+                const loginButton = document.getElementById('buttonLogin');
+                const firstLoginButton = window.parent.document.getElementById('buttonLogin');
+                const accountDropdown =  window.parent.document.getElementById('accountDropdown');
+                if (loginButton) {
+                        loginButton.addEventListener('click', async () => {
+                                const email = document.getElementById('email').value;
+                                const password = document.getElementById('password').value;
+                            
+                                const response = await fetch('/sec/login', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ email, password }),
+                                });
+                            
+                                if (response.ok) {
+                                        window.location.href = '/inicio';
+                                        firstLoginButton.style.display = 'none';
+                                        accountDropdown.style.display = 'block';
+                                        console.log("Botón cambiado!")
+                                } else {
+                                    alert('Error al iniciar sesión');
+                                }
+                            });
+                }
+                
+                const logoutButton = document.getElementById('logoutButton');
+                if (logoutButton) {
+                        logoutButton.addEventListener('click', async () => {
+                                const response = await fetch('/sec/logout', {
+                                        method: 'POST',
+                                        headers: {
+                                                'Content-Type': 'application/json',
+                                        },
+                                });
+
+                                if (response.ok) {
+                                        window.location.href = '/login';
+                                } else {
+                                        alert('Error al cerrar sesión');
+                                }
+                        });
+                }
         }
 
-        // Obtener todos los contenedores de planta
-        document.getElementById('plantasContainer').addEventListener('click', async (event) => {
-                        const plantaContainer = event.target.closest('.planta-container');
-                        if (plantaContainer) {
-                        const plantaId = plantaContainer.dataset.id;
-                        console.log("ID de la planta seleccionada:", plantaId);
-                
-                        // Realiza la acción deseada con la ID de la planta
-                        // Por ejemplo, mostrar detalles de la planta en un modal
-                        const planta = await mostrarPlantaId(plantaId);
-                        modalPlanta(planta);
-                }
-        });
-
         // Escuchar el clic en el botón de búsqueda
-        document.getElementById('searchButton').addEventListener('click', async () => {
-                const searchInput = document.getElementById('searchInput').value.toLowerCase();
-                const params = {
-                    inputString: searchInput,
-                };
-            
-                await actualizarPlantas(params);
-        });
+        if (!(pathName === "/login")) {
+                document.getElementById('searchButton').addEventListener('click', async () => {
+                        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+                        const params = {
+                                inputString: searchInput,
+                        };
+
+                        await actualizarPlantas(params);
+                });
+        }
 });

@@ -5,6 +5,35 @@
 
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 1, 10, 10, 2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #47cab0;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1f8a74;
+}
+
+/* For Scrollbar edges to be square when at the top or bottom */
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:window-inactive {
+  border-radius: 0;
+}
+
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -298,48 +327,50 @@ button.catButton span {
 
 /* Body inicio.html */
 .infoContainer {
-  background-color: #FAF8F6;
+  background-color: #F9F8F7;
+  display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 20px;
-  padding-bottom: 0;
+  margin-bottom: -20px;
   margin-top: -13px;
+  height: 140px;
 }
 
 .infoText {
-  margin-top: 0;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .infoTitle {
-  font-size: 20px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin-left: -13%;
+  font-family: 'Poppins' sans-serif;
+  font-weight: bold;
+  font-size: 25px;
   color: #4A9F81;
 }
 
 .infoDesc {
-  font-size: 13px;
-  max-width: 5px;
-
+  font-size: 15px;
+  color: #858585;
 }
 
 .infoButton {
   font-family: Arial, Helvetica, sans-serif;
-  width: 12% !important;
-  height: 35px !important;
-  border-radius: 0% !important;
-  border-color: #4DD7C9 !important;
-  background-color: #4DD7C9 !important;
-  margin-top: -6%;
-  margin-left: 22%;
-  font-size: 14px !important;
-  color: #fff !important;
+  padding: 8px 30px;
+  border-radius: 2px;
+  border: 2px solid #4DD7C9;
+  background-color: #4DD7C9;
+  color: #fff;
+  font-size: 15px;
+  transition: all 0.3s; 
+  white-space: nowrap; 
 }
 
 .infoButton:hover {
-  filter: brightness(101%);
+  background-color: #fff;
+  color: #4DD7C9;
 }
+
 
 #searchButton {
   background-color: transparent;
@@ -368,22 +399,43 @@ button.catButton span {
   color: #8f8585;
 }
 
-.resetFilter {
-  margin-left: 70%;
-  margin-top: -4.5%;
-
+.mainButton {
+  width: 21%;
+  margin-top: 5%;
 }
 
 .lineaDiv {
-  width: 95%;
+  max-width: 300%;
+  width: 105%;
   color: #ccc;
-  margin-top: -20px;
+  margin-left: 20px;
+  margin-top: 0;
 }
 
-.filterButton {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.dropdown-menu {
+  max-width: 5% !important;
+  margin-left: 25px !important;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdoown {
+  font-size: 14px;
+  padding: 8px;
+}
+
+.dropdown-item.active {
+  background-color: #009A7B;
+  color: #fff;
+}
+
+.dropdoown:hover {
+  background-color: #009A7B;
+  cursor: pointer;
 }
 
 .planta {
@@ -398,7 +450,7 @@ button.catButton span {
 }
 
 .planta-container {
-  position: relative;
+  position: static;
   width: 90%;
   height: 480px;
   overflow: hidden;
@@ -420,7 +472,7 @@ button.catButton span {
 
 .planta-container img {
   width: 100%;
-  height: 70%;
+  height: 80%;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -462,6 +514,7 @@ button.catButton span {
 
 /* Responsive */
 @media screen and (max-width: 375px) {
+
   .offSign {
     text-align: center;
   }
@@ -494,6 +547,11 @@ button.catButton span {
     padding-top: 100%;
   }
 
+  .infoContainer {
+    margin-top: 6px;
+    padding-bottom: 0;
+  }
+
   .linea {
     width: 100%;
     margin-top: 0%; 
@@ -510,7 +568,7 @@ button.catButton span {
 
   button.btn {
     margin: 0;
-    border-color: #009B7B;
+    border-color: none;
     justify-content: center;
   }
 
@@ -535,21 +593,41 @@ button.catButton span {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-color: transparent;
   }
+  
+  .mainTextContainer {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filterContainer {
+    order: 1;
+  }
+  
+  .plantasContainer {
+    order: 2;
+  }
+
+  .mainButton {
+    align-items: center;
+  }
 
   .infoContainer {
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding-bottom: 5%;
+    height: 210px;
   }
 
   .infoTitle {
     font-size: 18px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Poppins' sans-serif;
     font-weight: bold;
-    margin-left: -13%;
+    margin-left: -35px;
     padding-left: 35px;
     color: #4A9F81;
+    
   }
 
   .infoDesc {
@@ -559,6 +637,53 @@ button.catButton span {
   .infoButton {
     width: 64% !important;
     margin-top: 15px !important;
+  }
+
+  .filterContainerButton {
+    margin-top: 6% !important;
+  }
+
+  .mBtn1 {
+    margin-top: -20% !important;
+    margin-left: -4% !important;
+    width: 55% !important;
+  }
+
+  .mBtn2 {
+    margin-top: 3% !important;
+    margin-left: -55.6% !important;
+  }
+
+  .mainVentaContainer {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filterContainer {
+    order: 1;
+  }
+
+  .plantasContainer {
+    order: 2;
+  }
+
+  .planta-contenedor {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 20px;
+  }
+
+  .planta {
+    width: 100%;
+    margin: 5px;
+    padding: 0px;
+    text-align: center;
+    display: inline-block;
+    gap: 1rem;
+    grid-auto-rows: 22rem;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   }
 }
 

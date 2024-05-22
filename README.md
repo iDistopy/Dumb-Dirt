@@ -24,7 +24,7 @@ npm -i install
 ```text
 node --experimental-modules .\public\js\server.mjs
 ```
-Listo! Servidor iniciado en http://127.0.0.1:433/
+Listo! Servidor iniciado en http://localhost/
 
 ## Importante
 Para auto-reiniciar el servidor debido a nuevos cambios realizados en el código, se puede podrá utilizar **nodemon**.
