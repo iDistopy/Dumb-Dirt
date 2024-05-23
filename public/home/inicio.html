@@ -62,7 +62,7 @@
             </button>
 
             <!-- Iniciar sesión -->
-            <button id="buttonLogin" type="button" class="navButton btn" onclick="window.location.href='/login'">
+            <button id="buttonLogin" type="button" class="navButton btn" onclick="window.location.href='/unirse'">
               <span class="titleText">Iniciar Sesión<br>
                 <span class="subText">Tu Cuenta</span>
               </span>
@@ -179,16 +179,80 @@
       <div class="mainVentaContainer d-flex ">
       <div class="col-lg-2">
         <!-- Contenido del menú de filtrado -->
-        <div class="filterContainer">
-          <div class="filterOptions">
-            <button class="filterButton btn">Precio <i class="fa-solid fa-chevron-down"></i></button>
-            <button class="filterButton btn">Tipo de Planta <i class="fa-solid fa-chevron-down"></i></button>
-            <button class="filterButton btn">Tamaño <i class="fa-solid fa-chevron-down"></i></button>
-            <button class="filterButton btn">Color <i class="fa-solid fa-chevron-down"></i></button>
-            <button class="filterButton btn">Ubicación <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="row">
+          <div class="col">
+              <div class="filterContainer">
+                <h5 class="categoryTitle">Tipo de Plantas</h5>
+                  <div class="filterOptions">
+                      <button class="filterButton btn">Plantas Pequeñas</button>
+                  </div>
+                  <div class="filterOptions">
+                      <button class="filterButton btn">Plantas Largas</button>
+                  </div>
+                  <div class="filterOptions">
+                      <button class="filterButton btn">Tolerancia a Poca Luz</button>
+                  </div>
+                  <div class="filterOptions">
+                      <button class="filterButton btn">Mejor para Iniciantes</button>
+                  </div>
+                  <div class="filterOptions">
+                      <button class="filterButton btn">Plantas Pet-Friendly</button>
+                  </div>
+              </div>
           </div>
+      </div>
+      <hr class="lineaDivCorta">
+      <div class="row">
+        <div class="col">
+            <div class="filterContainer">
+              <h5 class="categoryTitle">Tamaños</h5>
+                <div class="filterOptions">
+                    <button class="filterButton btn">Pequeñas</button>
+                </div>
+                <div class="filterOptions">
+                    <button class="filterButton btn">Medianas</button>
+                </div>
+                <div class="filterOptions">
+                    <button class="filterButton btn">Grandes</button>
+                </div>
+            </div>
         </div>
       </div>
+      <hr class="lineaDivCorta">
+      <div class="row">
+        <div class="col">
+            <div class="filterContainer">
+              <h5 class="categoryTitle">Luz</h5>
+                <div class="filterOptions">
+                    <button class="filterButton btn">Brillo Directo</button>
+                </div>
+                <div class="filterOptions">
+                    <button class="filterButton btn">Brillo Medio Indirecto</button>
+                </div>
+                <div class="filterOptions">
+                    <button class="filterButton btn">Poca Luz</button>
+                </div>
+            </div>
+        </div>
+      </div>
+      <hr class="lineaDivCorta">
+      <div class="row">
+        <div class="col">
+            <div class="filterContainer">
+              <h5 class="categoryTitle">Beneficios</h5>
+                <div class="filterOptions">
+                    <button class="filterButton btn">En Oferta</button>
+                </div>
+                <div class="filterOptions">
+                    <button class="filterButton btn">Cuidado Sencillo</button>
+                </div>
+                <div class="filterOptions">
+                    <button class="filterButton btn">Aire Purificante</button>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
       <div class="col-lg-10">
 
         <!-- Menú de Productos -->
@@ -300,5 +364,4 @@
     </div>
   </div>
 </body>
-
 </html>
