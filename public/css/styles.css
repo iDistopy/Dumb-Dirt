@@ -1,8 +1,4 @@
-@font-face {
-  font-family: "GrandCru-LightS";
-  src: url('../utils/fonts/GrandCru-LightS.otf') format('opentype');
-}
-
+@font-face { font-family: "GrandCru-LightS"; src: url('../utils/fonts/GrandCru-LightS.otf') format('opentype'); }
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 /* Scrollbar */
@@ -393,6 +389,10 @@ button.shopButton:hover {
   background-color: #b3aaaa;
 }
 
+.lineaDivCorta {
+  width: 60%;
+  margin-left: 32%;
+}
 
 .catContainer {
   margin-top: -10px;
@@ -493,6 +493,9 @@ button.catButton span {
   color: #4DD7C9;
 }
 
+.mBtn1 {
+  margin-left: 48%;
+}
 
 #searchButton {
   background-color: transparent;
@@ -528,10 +531,24 @@ button.catButton span {
 
 .lineaDiv {
   max-width: 300%;
-  width: 105%;
+  width: 98%;
   color: #ccc;
-  margin-left: 20px;
+  margin-left: 6.3%;
   margin-top: 0;
+}
+
+.categoryTitle {
+  font-family: "GrandCru-LightS", serif;
+  font-size: 20px;
+  margin-left: 32.5%;
+  color: #009a7b
+}
+
+.filterButton{
+  margin-left: 31%;
+  margin-bottom: 2%;
+  font-size: 14px;
+  font-family: "GrandCru-LightS", serif;
 }
 
 .dropdown-menu {
