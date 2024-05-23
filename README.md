@@ -22,7 +22,7 @@ npm -i install
 ```
 - Iniciar el Servidor
 ```text
-node --experimental-modules .\public\js\server.mjs
+node --experimental-modules .\js\server.mjs
 ```
 Listo! Servidor iniciado en http://localhost/
 
