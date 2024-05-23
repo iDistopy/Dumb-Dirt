@@ -187,6 +187,12 @@ function generarModalHTML(planta) {
 }
 
 // Validación per input (momentánea)
+function validarContrasena(contra) {
+        const regex = /^(?=.*[A-Z])(?=.*[a-z]{6,})(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).*$/;
+        return regex.test(contra);
+}
+
+// Validación per input (momentánea)
 function validarTelefono(telefono) {
         // De momento únicamente con el chileno
         const regex = /^56(9\d{8})$/;
@@ -402,7 +408,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Verificar si estamos en la página de login
-        if (pathName === '/login') {
+        if (pathName === '/unirse') {
                 // Código para la página de login
                 signUpButton.addEventListener('click', () => {
                         container.classList.add("right-panel-active");
@@ -413,9 +419,30 @@ document.addEventListener("DOMContentLoaded", function () {
                         container.classList.remove("right-panel-active");
                         document.title = "Iniciar Sesión • Dumb Dirt";
                 });
+
                 const loginButton = document.getElementById('buttonLogin');
                 const firstLoginButton = window.parent.document.getElementById('buttonLogin');
                 const accountDropdown =  window.parent.document.getElementById('accountDropdown');
+
+                document.getElementById('registerForm').addEventListener('submit', function(event) {
+                        const pass1 = document.getElementById('passwordRegister');
+                        const pass2 = document.getElementById('passwordRegister');
+                        const passError = document.getElementById('telefonoError');
+
+                        if (pass1.value !== pass2.value) {
+                                passError.textContent = 'Las contraseñas no coinciden...';
+                                event.preventDefault();
+                        } else if (!validarContrasena(pass1.value)) {
+                                passError.textContent = 'La contraseña debe tener al menos 6 caracteres, una mayúscula, un número y un carácter especial.';
+                                event.preventDefault();
+                        } else {
+                                passError.textContent = '';
+                        }
+                                
+                        
+                        
+                });
+
                 if (loginButton) {
                         loginButton.addEventListener('click', async () => {
                                 const email = document.getElementById('email').value;
@@ -438,24 +465,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                     alert('Error al iniciar sesión');
                                 }
                             });
-                }
-                
-                const logoutButton = document.getElementById('logoutButton');
-                if (logoutButton) {
-                        logoutButton.addEventListener('click', async () => {
-                                const response = await fetch('/sec/logout', {
-                                        method: 'POST',
-                                        headers: {
-                                                'Content-Type': 'application/json',
-                                        },
-                                });
-
-                                if (response.ok) {
-                                        window.location.href = '/login';
-                                } else {
-                                        alert('Error al cerrar sesión');
-                                }
-                        });
                 }
         }
 
