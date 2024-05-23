@@ -34,7 +34,7 @@ npm install -g nodemon
 ```
 Inciar Servidor
 ```text
-nodemon --experimental-modules .\public\js\server.mjs
+nodemon --experimental-modules .\js\server.mjs
 ```
 ## Autores
 - Esteban Guerra
