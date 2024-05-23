@@ -46,9 +46,9 @@ app.get('/sucursales', (req, res) => {
   res.type('text/html');
   res.sendFile(path.resolve(__dirname, '..', 'home', 'branches.html'));
 });
-app.get('/login', (req, res) => {
+app.get('/unirse', (req, res) => {
   res.type('text/html');
-  res.sendFile(path.resolve(__dirname, '..', 'home', 'secure', 'login.html'));
+  res.sendFile(path.resolve(__dirname, '..', 'home', 'secure', 'unirse.html'));
 });
 
 
@@ -209,16 +209,16 @@ app.post('/sec/login', async (req, res) => {
   });
 });
 
-app.post('/sec/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res.redirect('/inicio');
-    }
-    req.session.isAuthenticated = false;
-    res.clearCookie('connect.sid');
-    res.redirect('/login');
-  });
-});
+// app.post('/sec/logout', (req, res) => {
+//   req.session.destroy((err) => {
+//     if (err) {
+//       return res.redirect('/inicio');
+//     }
+//     req.session.isAuthenticated = false;
+//     res.clearCookie('connect.sid');
+//     res.redirect('/login');
+//   });
+// });
 
 // Middleware para proteger rutas
 // function requireAuth(req, res, next) {
