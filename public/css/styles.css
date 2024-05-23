@@ -35,7 +35,7 @@ body::-webkit-scrollbar-thumb:window-inactive {
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -146,14 +146,11 @@ button.shopButton:hover {
 
 /* Modales */
 
-.modal-content {
+/* Buscador */
+.modalContent {
   background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
-}
-
-.modal-body {
-  color: transparent;
 }
 
 #modalBackdrop {
@@ -167,7 +164,6 @@ button.shopButton:hover {
   display: none;
 }
 
-/* Estilo adicional para el contenedor del modal */
 #searchModalContainer {
   background-color: transparent; 
   position: absolute;
@@ -250,14 +246,6 @@ button.shopButton:hover {
   margin-right: 10px;
 }
 
-.linea {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 100%;
-  height: 1px;
-  background-color: #b3aaaa;
-}
-
 .search__icon:active {
   transform: scale(105%);
   transition: all 0.2s;
@@ -271,6 +259,140 @@ button.shopButton:hover {
 .search__icon path {
   fill: white;
 }
+
+/* Información de Envío*/
+
+.title {
+  font-size: 28px;
+  color: rgb(87 161 83);
+  font-weight: 500;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.title::before,.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: rgb(87 161 83);
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: rgb(87 161 83);
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.infoBody {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+}
+
+.infoBody form div input {
+  background-color: #fff;
+  border-radius: .375em;
+  min-height: 48px;
+}
+
+.infoBody form div select {
+  background-color: #fff;
+  border-radius: .375em;
+  min-height: 48px;
+}
+
+.infoBody form div select:focus {
+  box-shadow: 0 0 0 2px #79db7e;
+  outline: none;
+}
+
+.infoBody form div input:focus {
+  box-shadow: 0 0 0 2px #79db7e;
+  outline: none;
+}
+
+.infoBody form div textarea:focus {
+  box-shadow: 0 0 0 2px #79db7e;
+  outline: none;
+}
+
+.infoBody form div input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.infoBody form div label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+#trabajo, #casa {
+  min-height: 0;
+  box-shadow: none;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.infoContent {
+  border: none;
+  border-radius: 15px;
+}
+
+.formInfoButton {
+  position: relative;
+  place-items: initial;
+  border-radius: 8px;
+  background-color: #45c26f;
+  border-color: #45c26f;
+  color: #fff;
+}
+
+.formInfoButton:hover {
+  background-color: #45c26f;
+  border-color: #45c26f;
+  color: #fff;
+  transition: all 0.3s;
+  scale: 1.05;
+}
+
+.formInfoButton:not(:hover) {
+  transition: all 0.3s;
+  scale: 1;
+}
+
+/******************************/
+
+.linea {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 1px;
+  background-color: #b3aaaa;
+}
+
 
 .catContainer {
   margin-top: -10px;
@@ -334,7 +456,7 @@ button.catButton span {
   text-align: center;
   margin-bottom: -20px;
   margin-top: -13px;
-  height: 140px;
+  height: 150px;
 }
 
 .infoText {
@@ -548,7 +670,7 @@ button.catButton span {
   }
 
   .infoContainer {
-    margin-top: 6px;
+    margin-top: 0;
     padding-bottom: 0;
   }
 
@@ -578,7 +700,7 @@ button.catButton span {
 
   button.shopButton {
     position: relative;
-    margin-top: -90%;
+    margin-top: -80%;
     font-size: 17px;
     margin-left: 85%;
     border-color: transparent;
@@ -602,6 +724,7 @@ button.catButton span {
 
   .filterContainer {
     order: 1;
+    margin-bottom: 15px;
   }
   
   .plantasContainer {
@@ -660,14 +783,6 @@ button.catButton span {
     flex-direction: column;
   }
 
-  .filterContainer {
-    order: 1;
-  }
-
-  .plantasContainer {
-    order: 2;
-  }
-
   .planta-contenedor {
     width: 100%;
     height: 100%;
@@ -676,14 +791,19 @@ button.catButton span {
   }
 
   .planta {
-    width: 100%;
-    margin: 5px;
+    width: 90%;
+    margin: 0px;
+    margin-left: 20px;
     padding: 0px;
     text-align: center;
     display: inline-block;
     gap: 1rem;
     grid-auto-rows: 22rem;
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  }
+
+  .planta-image {
+    border-radius: 5px;
   }
 }
 

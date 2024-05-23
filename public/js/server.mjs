@@ -12,6 +12,12 @@ const PUERTO = 80;
 const API_KEY = 'BGoua_i8_bqc9wL7JBLWEwSS_J3Pk59osoIgjRMTMPo';
 const app = express();
 
+// Colores ANSI
+const RESET = "\x1b[0m";
+const RED = "\x1b[31m";
+const GREEN = "\x1b[32m";
+const YELLOW = "\x1b[33m";
+const BLUE = "\x1b[34m";
 // APP & MIDDLEWARE
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,6 +31,7 @@ app.use('/css', express.static(path.join(__dirname, '..', 'css')));
 app.use('/js', express.static(path.join(__dirname, '..', 'js')));
 app.use('/utils', express.static(path.join(__dirname, '..', 'utils')));
 app.use('/home', express.static(path.join(__dirname, '..', 'home')));
+app.use('/data', express.static(path.join(__dirname, '..', 'node_modules')));
 
 // GET
 app.get('/', (req, res) => {
@@ -44,17 +51,102 @@ app.get('/login', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'home', 'secure', 'login.html'));
 });
 
+
 // POST
+app.post('/sec/delivery', (req, res) => {
+  const { fullname, country, region, address, number, floorOrDepartment, houseOrJob, contactNumber, additionalInfo } = req.body;
+
+  // Ruta al archivo de datos
+  const dataFilePath = path.join(__dirname, '..', 'node_modules', 'country-region-data', 'data.json');
+
+  // Leer el archivo de datos
+  fs.readFile(dataFilePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error al leer el archivo de datos:', err);
+      res.status(500).send('Error del Servidor');
+      return;
+    }
+
+    try {
+      // Convertir los datos a formato JSON
+      const countryRegionData = JSON.parse(data);
+      
+      // Buscar el país en los datos y obtener su nombre completo
+      const countryData = countryRegionData.find(item => item.countryShortCode === country);
+      const countryFullName = countryData ? countryData.countryName : country;
+
+      // Buscar la región en los datos y obtener su nombre completo
+      const regionData = countryData ? countryData.regions.find(item => item.shortCode === region) : null;
+      const regionFullName = regionData ? regionData.name : region;
+
+      // Crear el objeto de dirección del usuario
+      const userAddress = { 
+        nombreCompleto: fullname, 
+        pais: countryFullName, 
+        region: regionFullName, 
+        direccion: address, 
+        numero: number || "N/A", 
+        pisoODepto: floorOrDepartment || "N/A", 
+        casaOTrabajo: houseOrJob, 
+        numeroContacto: "+"+contactNumber, 
+        infoAdicional: additionalInfo || "N/A" 
+      };
+
+      // Guardar el objeto de dirección en la base de datos local
+      const deliveryFilePath = path.join(__dirname, '..', 'db', 'deliverys.json');
+      fs.readFile(deliveryFilePath, 'utf8', (err, deliveryData) => {
+        if (err) {
+          console.error('Error al leer la base de datos local:', err);
+          res.status(500).send('Error del Servidor');
+          return;
+        }
+
+        let usuarios = [];
+        if (deliveryData) {
+          try {
+            usuarios = JSON.parse(deliveryData);
+          } catch (error) {
+            console.error('Error analizando la base de datos local:', error);
+            res.status(500).send('Error del Servidor');
+            return;
+          }
+        }
+
+        usuarios.push(userAddress);
+
+        fs.writeFile(deliveryFilePath, JSON.stringify(usuarios, null, 2), (err) => {
+          if (err) {
+            console.error('Error al guardar la dirección:', err);
+            res.status(500).send('Error del Servidor');
+          } else {
+            console.log('Datos de envío guardados:', userAddress);
+            res.redirect('/');
+          }
+        });
+      });
+
+    } catch (error) {
+      console.error('Error al analizar los datos del archivo:', error);
+      res.status(500).send('Error del Servidor');
+    }
+  });
+});
+
+
 app.post('/sec/register', (req, res) => {
   const { name, email, password } = req.body;
-  const user = { nombre: name, correo: email, contrasena: password };
+  const user = { 
+    nombre: name, 
+    correo: email, 
+    contrasena: password 
+  };
 
   // Leer los usuarios actuales
   const filePath = path.join(__dirname, '..', 'db', 'cuentas.json');
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.error('Error analizando la DB local:', err);
-      res.status(500).send('Error del Servidor');
+      console.error('{RED}✘ Error analizando la DB local: {BLUE}', err);
+      res.status(500).send('{RED}✘ Error del Servidor');
       return;
     }
 
@@ -63,8 +155,8 @@ app.post('/sec/register', (req, res) => {
       try {
         usuarios = JSON.parse(data);
       } catch (error) {
-        console.error('Error analizando la DB local:', error);
-        res.status(500).send('Error del Servidor');
+        console.error('{RED}✘ Error analizando la DB local: {BLUE}', error);
+        res.status(500).send('{RED}✘ Error del Servidor');
         return;
       }
     }
@@ -76,9 +168,9 @@ app.post('/sec/register', (req, res) => {
     fs.writeFile(filePath, JSON.stringify(usuarios, null, 2), (err) => {
       if (err) {
         console.error('Error al Registrar al Usuario:', err);
-        res.status(500).send('Error del Servidor');
+        res.status(500).send('{RED}✘ Error del Servidor');
       } else {
-        console.log('Usuario registrado:', user);
+        console.log('{GREEN}✔ Usuario registrado:', user);
         res.redirect('/');
       }
     });
@@ -87,11 +179,10 @@ app.post('/sec/register', (req, res) => {
 
 app.post('/sec/login', async (req, res) => {
   const { email, password } = req.body;
-
   const filePath = path.join(__dirname, '..', 'db', 'cuentas.json');
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.error('Error analizando la DB local:', err);
+      console.error('{RED}→ Error analizando la DB local: {BLUE}', err);
       res.status(500).send('Error del Servidor');
       return;
     }
@@ -101,8 +192,8 @@ app.post('/sec/login', async (req, res) => {
       try {
         usuarios = JSON.parse(data);
       } catch (error) {
-        console.error('Error analizando la DB local:', error);
-        res.status(500).send('Error del Servidor');
+        console.error('{RED}✘ Error analizando la DB local: {BLUE}', error);
+        res.status(500).send('{RED}✘ Error del Servidor');
         return;
       }
     }
@@ -139,10 +230,10 @@ app.post('/sec/logout', (req, res) => {
 // }
 
 // Ubicaciones protegidas
-app.get('/cuenta', (req, res) => {
-  res.type('text/html');
-  res.sendFile(path.resolve(__dirname, '..', 'home', 'cuenta.html'));
-});
+// app.get('/cuenta', (req, res) => {
+//   res.type('text/html');
+//   res.sendFile(path.resolve(__dirname, '..', 'home', 'cuenta.html'));
+// });
 
 ////////////////////////////////////
 //                                //

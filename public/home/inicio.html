@@ -86,9 +86,8 @@
             </div>
         </div>
         </form>
-        <button class="navButton shopButton btn">
-          <i class="fa-solid fa-basket-shopping"></i>
-          <span>(8)</span>
+        <button type="button" class="shopButton btn" id="shopButton" onclick="openInfoModal()">
+          <i class="fa-solid fa-cart-shopping"></i>
         </button>
       </div>
       </div>
@@ -205,7 +204,7 @@
   <!-- Buscador -->
   <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+      <div class="modalContent modal-content">
         <h1
           style="font-size: 25px; padding-left: 25px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
           <strong style="color: #fff;">Buscador</strong>
@@ -222,6 +221,80 @@
             </g>
             </svg>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Información de Envío -->
+  <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModal" aria-hidden="true">
+    <div class="infoModal modal-dialog modal-dialog-centered modal-sl modal-lg" id="infoModal">
+      <div class="infoContent modal-content">
+        <div class="infoBody modal-body">
+          <form id="deliveryForm" method="POST" action="/sec/delivery">
+            <p class="title"><strong>Dirección de entrega</strong></p>
+            <div class="mb-3">
+              <label for="nombreApellido" class="form-label">Nombre y Apellido</label>
+              <input type="text" class="form-control" name="fullname" id="nombreApellido" required>
+              <span style="font-size: 12px; margin-left: 5px; color: #afaeae;">Tal cual figure en la cédula de identidad.</span>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="ciudad" class="form-label">País</label>
+                <select itemid="paisSelect" name="country" class="form-select" id="pais" required>
+                    <!-- Se insertan solas -->
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="region" class="form-label">Región</label>
+                <select itemid="regionSelect" name="region" class="form-select" id="region" required>
+                    <!-- Se insertan solas -->
+                </select>
+              <span id="regionText" style="font-size: 12px; margin-left: 5px; color: #afaeae;">Debes seleccionar una ciudad primero.</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="calle" class="form-label">Calle</label>
+                <input type="text" name="address" class="form-control" id="calle" required>
+                <span id="calleText" style="font-size: 12px; margin-left: 5px; color: #afaeae;">Debes seleccionar una ciudad primero.</span>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="numero" class="form-label">Número</label>
+                <input type="number" name="number" class="form-control" id="numero">
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="pisoDepartamento" class="form-label">Piso/Departamento (opcional)</label>
+              <input type="text" name="floorOrDepartment" class="form-control" id="piso">
+            </div>
+            <div class="mb-3">
+              <label class="form-check-label">¿Es casa o trabajo?</label><br>
+              <div class="form-check form-check-inline">
+                  <input class="formRadio form-check-input" name="houseOrJob" type="radio" id="casa" value="Casa" required>
+                  <label class="form-check-label" for="casa"><i class="fa-solid fa-house" style="font-size: 14px; padding-right: 5px;"></i> Casa</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input class="formRadio form-check-input" name="houseOrJob" type="radio" id="trabajo" value="Trabajo" required>
+                  <label class="form-check-label" for="trabajo"><i class="fa-solid fa-briefcase" style="font-size: 14px; padding-right: 5px"></i> Trabajo</label>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="telefono" class="form-label">Teléfono de Contacto</label>
+              <input type="number" class="form-control" name="contactNumber" id="telefono" required>
+              <span id="telefonoError" style="font-size: 12px; margin-left: 5px; color: red;"></span>
+            </div>
+            <div class="mb-3">
+              <label for="referencias" class="form-label">Referencias Adicionales</label>
+              <textarea class="form-control" maxlength="128" id="referencias" name="additionalInfo" oninput="actContadorLetras()" placeholder="Piso o departamento, descripción de la fachada, puntos de referencia, indicaciones de seguridad, etc."></textarea>
+              <div class="text-end">
+                <span id="contador">0/128</span>
+              </div>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="formInfoButton btn">Guardar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
