@@ -14,7 +14,7 @@ git clone https://github.com/iDistopy/Dumb-Dirt.git
 ```
 - Ingresar al Proyecto
 ```text
-cd Dumb-Dirt
+cd Dumb-Dirt\public
 ```
 - Instalar Dependencias
 ```text
