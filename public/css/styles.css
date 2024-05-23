@@ -615,6 +615,31 @@ button.catButton span {
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
 }
 
+.planta-image {
+  animation: moveImage 2s linear forwards;
+}
+
+@keyframes moveImage {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-50);
+  }
+  0% {
+    transform: translateX(0px);
+  }
+}
+
 /* Modal de las plantas */
 .modal {
   display: none;
